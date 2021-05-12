@@ -1,6 +1,9 @@
 /* main.c */
 
-int main (void)
+#include "world.h"
+
+int main(void)
 {
-	print_hello();
+	h_world();
+	g_world();
 }

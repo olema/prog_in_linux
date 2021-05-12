@@ -1,13 +1,19 @@
-# Makefile fo Hello World project
+# Makefile fo World project
 
-hello: main.o hello.o
-	gcc -o hello main.o hello.o
+binary: main.o libworld.so
+	gcc -o binary main.o -L. -lworld -Wl,-rpath,.
 
 main.o: main.c
 	gcc -c main.c
 
-hello.o: hello.c
-	gcc -c hello.c
+libworld.so: h_world.o g_world.o
+	gcc -shared -o libworld.so h_world.o g_world.o
+
+h_world.o: h_world.c
+	gcc -c -fPIC h_world.c
+
+g_world.o: g_world.c
+	gcc -c -fPIC g_world.c
 
 clean:
-	rm -f *.o hello
+	rm -f *.o *.a *.so binary
